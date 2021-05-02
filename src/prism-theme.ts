@@ -1,7 +1,9 @@
 import { PrismTheme } from "prism-react-renderer";
 
-const theme: PrismTheme = {
-  plain: {},
+export default <PrismTheme>{
+  plain: {
+    //
+  },
   styles: [
     {
       types: ["changed"],
@@ -99,5 +101,3 @@ const theme: PrismTheme = {
     },
   ],
 };
-
-export default theme;

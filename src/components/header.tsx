@@ -1,12 +1,12 @@
 import * as React from "react";
 
-import A from "@/components/a";
 import config from "~/site-config";
+import A from "@/components/a";
 
 const Header: React.FC = () => (
   <div className="p-4 text-center">
     <h1>
-      <span role="img" aria-label="kite">
+      <span aria-label="kite" role="img">
         🪁
       </span>{" "}
       {config.title}

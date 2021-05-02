@@ -1,12 +1,12 @@
-import * as React from "react";
+import { useEffect, useState } from "react";
 
 type ValueType<T> = T extends infer U ? U : T;
 
 // https://usehooks.com/useDebounce
-const useDebounce = <T>(value: ValueType<T>, delay = 500) => {
-  const [debouncedValue, setDebouncedValue] = React.useState(value);
+export default function useDebounce<T>(value: ValueType<T>, delay = 500) {
+  const [debouncedValue, setDebouncedValue] = useState(value);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedValue(value);
     }, delay);
@@ -16,9 +16,9 @@ const useDebounce = <T>(value: ValueType<T>, delay = 500) => {
     };
   }, [value, delay]);
 
-  const forceUpdate = () => setDebouncedValue(value);
+  function forceUpdate() {
+    return setDebouncedValue(value);
+  }
 
   return [debouncedValue, forceUpdate] as [ValueType<T>, () => void];
-};
-
-export default useDebounce;
+}

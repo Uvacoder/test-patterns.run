@@ -1,8 +1,6 @@
-/* eslint-disable import/prefer-default-export */
-
 import { LogicFunction } from "@/types";
 
-export function createPattern(logic: LogicFunction) {
+export default function createPattern(logic: LogicFunction) {
   return {
     test: (size: number) => {
       let out = "";
@@ -17,8 +15,8 @@ export function createPattern(logic: LogicFunction) {
 
       try {
         logic({ newline, print, size });
-      } catch (error) {
-        return `${error as ReferenceError}`;
+      } catch (error: unknown) {
+        return `${<ReferenceError>error}`;
       }
 
       return out;
