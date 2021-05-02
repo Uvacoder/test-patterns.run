@@ -1,4 +1,5 @@
 /* eslint-disable no-shadow */
+
 const favicons = require("favicons");
 const fs = require("fs");
 const path = require("path");
@@ -33,20 +34,21 @@ favicons(
       console.error(error.message);
     }
 
-    images.forEach((image) => {
-      fs.writeFile(
-        path.resolve(__dirname, "./public/icons", image.name),
-        image.contents,
-        (error) => error && console.error(error),
-      );
-    });
-
-    files.forEach((file) => {
-      fs.writeFile(
-        path.resolve(__dirname, "./public", file.name),
-        file.contents,
-        (error) => error && console.error(error),
-      );
-    });
+    Promise.all([
+      ...images.forEach((image) => {
+        fs.writeFile(
+          path.resolve(__dirname, "./public/icons", image.name),
+          image.contents,
+          (error) => error && console.error(error),
+        );
+      }),
+      ...files.forEach((file) => {
+        fs.writeFile(
+          path.resolve(__dirname, "./public", file.name),
+          file.contents,
+          (error) => error && console.error(error),
+        );
+      }),
+    ]);
   },
 );

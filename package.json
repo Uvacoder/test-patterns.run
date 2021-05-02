@@ -1,7 +1,7 @@
 {
   "name": "console-patterns",
   "description": "Collection of snippets to render logical patterns",
-  "version": "2.2.1",
+  "version": "3.0.0",
   "repository": "git@github.com:grikomsn/console-patterns.git",
   "author": "Griko Nibras <git@griko.id>",
   "scripts": {
@@ -9,12 +9,9 @@
     "build:dir": "mkdirp ./public/icons/",
     "build:favicons": "node generate-favicons",
     "clean": "rimraf .next \"./public/!(social.png)\"",
-    "develop": "next dev",
+    "deduplicate": "npx yarn-deduplicate && yarn",
+    "dev": "next",
     "doctl": "doctl apps update 455f67d5-cf6f-45c0-8ee1-0c0d9391f7a6 --spec doctl.yaml",
-    "format": "concurrently \"yarn:format:*\"",
-    "format:index": "prettier --write \"*.{js,json,md}\"",
-    "format:patterns": "prettier --write \"patterns/*.js\"",
-    "format:src": "prettier --write \"src/**/*.{css,js,ts,tsx}\"",
     "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
     "type-check": "tsc --noEmit",
     "validate": "yarn lint && yarn type-check"
