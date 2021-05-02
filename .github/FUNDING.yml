@@ -1,7 +1,12 @@
 issuehunt: grikomsn
 ko_fi: grikomsn
 liberapay: grikomsn
-custom: ['https://karyakarsa.com/grikomsn', 'https://saweria.co/grikomsn', 'https://trakteer.id/grikomsn']
+custom:
+  [
+    "https://karyakarsa.com/grikomsn",
+    "https://saweria.co/grikomsn",
+    "https://trakteer.id/grikomsn",
+  ]
 
 community_bridge: # Replace with a single Community Bridge project-name e.g., cloud-foundry
 github: # Replace with up to 4 GitHub Sponsors-enabled usernames e.g., [user1, user2]
