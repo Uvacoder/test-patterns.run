@@ -2,10 +2,8 @@
 
 <div align="center">
 
-[![header](./public/social.png)](https://console-patterns.vercel.app)
+[![header](https://api.microlink.io?url=https%3A%2F%2Fconsole-patterns.vercel.app%2F&overlay.browser=dark&screenshot=true&meta=false&embed=screenshot.url)](https://console-patterns.vercel.app)
 
 <https://console-patterns.vercel.app> <br/>
-<https://console-patterns.netlify.app> <br/>
-<https://console-patterns-m9uyh.ondigitalocean.app> <br/>
 
 </div>
