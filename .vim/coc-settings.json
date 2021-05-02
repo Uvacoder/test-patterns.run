@@ -1,0 +1,7 @@
+{
+  "codeLens.enable": true,
+  "css.validate": false,
+  "eslint.packageManager": "yarn",
+  "npm.binPath": "yarn",
+  "scss.validate": false
+}
