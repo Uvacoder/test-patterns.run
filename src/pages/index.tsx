@@ -1,4 +1,5 @@
-/* eslint-disable react/no-array-index-key */
+/* eslint-disable @typescript-eslint/no-var-requires */
+
 import * as React from "react";
 
 import Container from "@/components/container";
@@ -6,10 +7,10 @@ import theme from "@/prism-theme";
 import { LogicFunction } from "@/types";
 import createPattern from "@/utils/create-pattern";
 
-import * as fs from "fs";
+import fs from "fs";
 import { GetStaticProps, NextPage } from "next";
-import Link from "next/link";
-import * as path from "path";
+import NextLink from "next/link";
+import path from "path";
 import Highlight, { Prism } from "prism-react-renderer";
 
 interface PatternData {
@@ -30,8 +31,10 @@ export const getStaticProps: GetStaticProps = async () => {
     if (/\.pattern.js$/.test(filename)) {
       const filePath = path.join(patternsDirectory, filename);
       const source = fs.readFileSync(filePath, "utf8").trim();
-      const logic: LogicFunction = require(`../../patterns/${filename}`)
-        .default;
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      const logic: LogicFunction =
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+        require(`../../patterns/${filename}`).default;
       const example = createPattern(logic).test(5);
       return acc.concat({ title: filename.split(".")[0], source, example });
     }
@@ -82,9 +85,9 @@ const HomePage: NextPage<HomePageProps> = ({ data }) => (
         </div>
 
         <div className="text-sm text-center">
-          <Link href={`/pattern/${title}`}>
+          <NextLink href={`/pattern/${title}`}>
             <a href={`/pattern/${title}`}>Open playground</a>
-          </Link>
+          </NextLink>
         </div>
       </div>
     ))}
