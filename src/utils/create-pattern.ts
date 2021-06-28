@@ -16,7 +16,7 @@ export default function createPattern(logic: LogicFunction) {
       try {
         logic({ newline, print, size });
       } catch (error: unknown) {
-        return `${<ReferenceError>error}`;
+        return String(error);
       }
 
       return out;
