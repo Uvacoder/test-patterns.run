@@ -3,7 +3,8 @@ import "@/stylesheets/index.css";
 import * as React from "react";
 
 import config from "~/site-config";
-import Layout from "@/components/layout";
+import Footer from "@/components/footer";
+import Header from "@/components/header";
 
 import { AppProps } from "next/app";
 import Head from "next/head";
@@ -30,9 +31,13 @@ export default function App({ Component, pageProps, router }: AppProps) {
         titleTemplate={`%s • ${config.title}`}
       />
 
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <div className="flex flex-col justify-between min-h-screen">
+        <Header />
+        <main className="flex-grow">
+          <Component {...pageProps} />
+        </main>
+        <Footer />
+      </div>
     </>
   );
 }
