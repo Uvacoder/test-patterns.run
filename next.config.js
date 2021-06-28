@@ -1,7 +1,12 @@
+/** @type {import("next/dist/next-server/server/config-shared").NextConfig} */
 module.exports = {
-  // https://nextjs.org/docs/messages/webpack5
-  future: {
-    webpack5: true,
+  // https://github.com/vercel/next.js/blob/canary/packages/next/next-server/server/config-shared.ts#L42-L65
+  experimental: {
+    conformance: true,
+    optimizeCss: true,
+    optimizeImages: true,
+    scrollRestoration: true,
+    workerThreads: true,
   },
 
   // https://nextjs.org/docs/api-reference/next.config.js/headers
@@ -12,7 +17,7 @@ module.exports = {
         headers: [
           {
             key: "Cache-Control",
-            value: "s-maxage=1, stale-while-revalidate",
+            value: "public, s-maxage=1, stale-while-revalidate=59",
           },
         ],
       },

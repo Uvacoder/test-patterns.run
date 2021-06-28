@@ -1,21 +1,28 @@
-{
-  "extends": [
+// https://github.com/grikomsn/griko.id/tree/main/packages/eslint
+module.exports = {
+  extends: [
     "plugin:prettier/recommended",
     "prettier",
     "kentcdodds",
     "kentcdodds/react",
-    "kentcdodds/jsx-a11y"
+    "kentcdodds/jsx-a11y",
+    //
   ],
-  "plugins": ["prettier", "simple-import-sort"],
+  plugins: [
+    "prettier",
+    "simple-import-sort",
+    //
+  ],
 
-  "rules": {
+  rules: {
     // import rules
     "import/extensions": [
       "warn",
       "never",
       {
-        "css": "ignorePackages"
-      }
+        css: "ignorePackages",
+        graphql: "ignorePackages",
+      },
     ],
     "import/newline-after-import": "warn",
     "import/order": "off",
@@ -26,45 +33,48 @@
     "simple-import-sort/imports": [
       "warn",
       {
-        "groups": [
+        groups: [
           ["^.+\\.s?css$"],
           ["^\\u0000"],
           ["^react$"],
-          ["^~", "^@/"],
+          ["^~/", "^@/"],
           ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
-          ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"]
-        ]
-      }
-    ],
-
-    // react rules
-    "react/jsx-sort-props": [
-      "warn",
-      {
-        "reservedFirst": ["key"]
-      }
+          ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
+        ],
+      },
     ],
 
     // various rules
-    "no-var-requires": "off"
+    "max-lines": "off",
+    "max-lines-per-function": "off",
+    "no-void": "off",
+    "require-await": "off",
+
+    // react rules
+    "jsx-a11y/accessible-emoji": "off",
+    "react/jsx-sort-props": [
+      "warn",
+      {
+        reservedFirst: ["key"],
+      },
+    ],
   },
 
-  "overrides": [
+  overrides: [
     {
-      "files": ["*.ts", "*.tsx"],
-      "parser": "@typescript-eslint/parser",
-      "parserOptions": {
-        "project": "./tsconfig.json"
+      files: ["**/*.ts", "**/*.tsx"],
+      parser: "@typescript-eslint/parser",
+      parserOptions: {
+        project: "./tsconfig.json",
       },
-      "rules": {
+      rules: {
         "@typescript-eslint/no-explicit-any": "warn",
         "@typescript-eslint/no-unnecessary-condition": "off",
         "@typescript-eslint/no-unsafe-assignment": "warn",
-        "@typescript-eslint/no-var-requires": "off",
         "@typescript-eslint/require-await": "off",
         "@typescript-eslint/restrict-template-expressions": "warn",
-        "@typescript-eslint/unbound-method": "warn"
-      }
-    }
-  ]
-}
+        "@typescript-eslint/unbound-method": "warn",
+      },
+    },
+  ],
+};
