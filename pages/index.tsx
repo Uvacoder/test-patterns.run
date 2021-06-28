@@ -2,10 +2,10 @@
 
 import * as React from "react";
 
-import Container from "@/components/container";
-import theme from "@/prism-theme";
-import { LogicFunction } from "@/types";
-import createPattern from "@/utils/create-pattern";
+import Container from "~components/container";
+import theme from "~theme/prism";
+import { LogicFunction } from "~types";
+import createPattern from "~utils/create-pattern";
 
 import fs from "fs";
 import { GetStaticProps, NextPage } from "next";
@@ -34,7 +34,7 @@ export const getStaticProps: GetStaticProps = async () => {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       const logic: LogicFunction =
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        require(`../../patterns/${filename}`).default;
+        require(`../patterns/${filename}`).default;
       const example = createPattern(logic).test(5);
       return acc.concat({ title: filename.split(".")[0], source, example });
     }

@@ -2,7 +2,7 @@
 
 import * as React from "react";
 
-import { useEditorStore } from "~/src/store/editor";
+import { useEditorStore } from "~store/editor";
 
 const Increment: React.FC = () => {
   const inc = useEditorStore(React.useCallback((store) => store.increment, []));

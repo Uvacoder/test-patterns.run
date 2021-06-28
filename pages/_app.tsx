@@ -1,10 +1,10 @@
-import "@/stylesheets/index.css";
+import "~stylesheets/index.css";
 
 import * as React from "react";
 
-import config from "~/site-config";
-import Footer from "@/components/footer";
-import Header from "@/components/header";
+import Footer from "~components/footer";
+import Header from "~components/header";
+import config from "~config/site";
 
 import { AppProps } from "next/app";
 import Head from "next/head";

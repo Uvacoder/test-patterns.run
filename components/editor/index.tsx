@@ -2,9 +2,9 @@
 
 import * as React from "react";
 
-import { useEditorStore } from "~/src/store/editor";
-import Link from "@/components/link";
-import theme from "@/prism-theme";
+import Link from "~components/link";
+import { useEditorStore } from "~store/editor";
+import theme from "~theme/prism";
 
 import Decrement from "./decrement";
 import Increment from "./increment";

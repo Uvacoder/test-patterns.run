@@ -1,7 +1,7 @@
 import * as React from "react";
 
-import config from "~/site-config";
-import Link from "@/components/link";
+import Link from "~components/link";
+import config from "~config/site";
 
 const Header: React.FC = () => {
   return (

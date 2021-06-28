@@ -1,8 +1,8 @@
 import * as React from "react";
 
-import Container from "@/components/container";
-import Editor from "@/components/editor";
-import { EditorProvider } from "@/store/editor";
+import Container from "~components/container";
+import Editor from "~components/editor";
+import { EditorProvider } from "~store/editor";
 
 import fs from "fs";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";

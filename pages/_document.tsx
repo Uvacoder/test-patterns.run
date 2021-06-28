@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import config from "~/site-config";
+import config from "~config/site";
 
 import NextDocument, {
   DocumentContext,

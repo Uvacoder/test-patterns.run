@@ -1,6 +1,6 @@
 {
   "*.{js,json,md}": ["prettier --write"],
   "patterns/*.js": ["prettier --write"],
-  "src/**/*.css": ["prettier --write"],
-  "src/**/*.{js,jsx,ts,tsx}": ["eslint --fix"]
+  "**/*.css": ["prettier --write"],
+  "**/*.{js,jsx,ts,tsx}": ["eslint --fix"]
 }

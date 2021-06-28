@@ -1,8 +1,8 @@
 import * as React from "react";
 
-import { useEditorStore } from "~/src/store/editor";
-import { LogicFunction } from "@/types";
-import createPattern from "@/utils/create-pattern";
+import { useEditorStore } from "~store/editor";
+import { LogicFunction } from "~types";
+import createPattern from "~utils/create-pattern";
 
 interface RendererProps {
   children: LogicFunction;

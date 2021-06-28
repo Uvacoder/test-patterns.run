@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import Link from "@/components/link";
+import Link from "~components/link";
 
 const Footer: React.FC = () => {
   return (

@@ -4,10 +4,10 @@ const favicons = require("favicons");
 const fs = require("fs");
 const path = require("path");
 
-const config = require("./site-config");
+const config = require("./config/site");
 
 favicons(
-  path.join(__dirname, "./src/images/kite.png"),
+  path.join(__dirname, "./images/kite.png"),
   {
     path: "/icons/",
     appName: config.title,
