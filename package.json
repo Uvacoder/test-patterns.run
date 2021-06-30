@@ -19,6 +19,7 @@
     "#": "###################################################################"
   },
   "dependencies": {
+    "@monaco-editor/react": "^4",
     "@sindresorhus/class-names": "^1",
     "@types/node": "^14",
     "@types/react": "^17",

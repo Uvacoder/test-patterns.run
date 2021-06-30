@@ -4,69 +4,95 @@ import * as React from "react";
 
 import Link from "~components/link";
 import { useEditorStore } from "~store/editor";
-import theme from "~theme/prism";
+import monacoTheme from "~theme/monaco";
+import prismTheme from "~theme/prism";
 
 import Decrement from "./decrement";
 import Increment from "./increment";
+import LiveEditor from "./live";
+import MonacoEditor from "./monaco";
 import Renderer, { transformer } from "./renderer";
 import SizeIndicator from "./size-indicator";
 
 import { toClipboard } from "copee";
-import { LiveEditor, LiveError, LivePreview, LiveProvider } from "react-live";
-import shallow from "zustand/shallow";
+import { LiveError, LivePreview, LiveProvider } from "react-live";
 
 function createGitHubLink(name: string) {
   return `https://github.com/grikomsn/console-patterns/blob/main/patterns/${name}`;
 }
 
 const Editor: React.FC = () => {
-  const [title, source, updateSource, reset] = useEditorStore(
-    (store) => [store.title, store.source, store.updateSource, store.reset],
-    shallow,
-  );
-
-  React.useEffect(() => {
-    document.querySelector("textarea").focus();
-  }, []);
+  const editor = useEditorStore((store) => store);
 
   return (
     <LiveProvider
-      code={source}
+      code={editor.source}
       scope={{ Renderer }}
-      theme={theme}
+      theme={prismTheme}
       transformCode={transformer}
     >
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-5">
         <div className="flex flex-col px-8 py-4 bg-gray-900 rounded shadow lg:col-span-3">
           <div className="text-center">
-            <h6 className="mt-0">{title}</h6>
+            <h6 className="mt-0">{editor.title}</h6>
             <p className="mb-2 text-sm text-gray-600">
               You can click or tap the snippet below and edit the code which
               generates the pattern
             </p>
           </div>
 
-          <div className="flex flex-col flex-grow pb-4 md:flex-row">
-            <div className="overflow-x-auto text-sm lg:text-base">
-              <LiveEditor onChange={updateSource} />
-              <LiveError />
-            </div>
+          <div className="flex flex-col flex-grow pb-4 md:flex-row overflow-hidden">
+            {editor.useMonaco ? (
+              <MonacoEditor
+                beforeMount={(monaco) =>
+                  // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
+                  monaco.editor.defineTheme("night-owl", monacoTheme)
+                }
+                className="min-h-[400px]"
+                language="javascript"
+                onChange={editor.updateSource}
+                options={{
+                  fontFamily: "Cousine",
+                  fontSize: 14,
+                  lineNumbers: "off",
+                  minimap: {
+                    enabled: false,
+                  },
+                }}
+                theme="night-owl"
+                value={editor.source}
+              />
+            ) : (
+              <div className="overflow-x-auto min-h-[400px] px-4 text-sm">
+                <LiveEditor onChange={editor.updateSource} />
+                <LiveError />
+              </div>
+            )}
           </div>
 
-          <div className="text-sm text-center">
-            <button className="link" onClick={reset} type="reset">
+          <div className="flex flex-row text-sm gap-x-2">
+            <input
+              checked={editor.useMonaco}
+              id="use-monaco"
+              name="use-monaco"
+              onChange={() => editor.toggleMonaco()}
+              type="checkbox"
+            />
+            <label htmlFor="use-monaco">Use Monaco</label>
+            <div className="flex-grow" />
+            <button className="link" onClick={editor.reset} type="reset">
               Reset
             </button>
-            <span className="mx-2">/</span>
+            <span>/</span>
             <button
               className="link"
-              onClick={() => toClipboard(source)}
+              onClick={() => toClipboard(editor.source)}
               type="button"
             >
               Copy to clipboard
             </button>
-            <span className="mx-2">/</span>
-            <Link href={createGitHubLink(`${title}.pattern.js`)}>
+            <span>/</span>
+            <Link href={createGitHubLink(`${editor.title}.pattern.js`)}>
               View on GitHub
             </Link>
           </div>
