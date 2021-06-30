@@ -35,6 +35,7 @@
     "eslint-plugin-prettier": "^3",
     "eslint-plugin-react": "^7",
     "eslint-plugin-simple-import-sort": "^7",
+    "eslint-plugin-tailwindcss": "^1",
     "favicons": "^6",
     "mkdirp": "^1",
     "next": "^11",

@@ -8,7 +8,7 @@ const SizeIndicator: React.FC = () => {
   const size = useEditorStore(React.useCallback((store) => store.size, []));
 
   return (
-    <span className="px-4 py-2 tabular-nums" id="pattern-size">
+    <span className="py-2 px-4 tabular-nums" id="pattern-size">
       {size}
     </span>
   );

@@ -6,11 +6,13 @@ module.exports = {
     "kentcdodds",
     "kentcdodds/react",
     "kentcdodds/jsx-a11y",
+    "plugin:tailwindcss/recommended",
     //
   ],
   plugins: [
     "prettier",
     "simple-import-sort",
+    "tailwindcss",
     //
   ],
 

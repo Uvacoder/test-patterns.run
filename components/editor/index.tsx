@@ -31,8 +31,8 @@ const Editor: React.FC = () => {
       theme={prismTheme}
       transformCode={transformer}
     >
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-5">
-        <div className="flex flex-col px-8 py-4 bg-gray-900 rounded shadow lg:col-span-3">
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
+        <div className="flex flex-col lg:col-span-3 py-4 px-8 bg-gray-900 rounded shadow">
           <div className="text-center">
             <h6 className="mt-0">{editor.title}</h6>
             <p className="mb-2 text-sm text-gray-600">
@@ -41,14 +41,13 @@ const Editor: React.FC = () => {
             </p>
           </div>
 
-          <div className="flex flex-col flex-grow pb-4 md:flex-row overflow-hidden">
+          <div className="flex overflow-hidden flex-col md:flex-row flex-grow pb-4 min-h-[400px]">
             {editor.useMonaco ? (
               <MonacoEditor
                 beforeMount={(monaco) =>
                   // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
                   monaco.editor.defineTheme("night-owl", monacoTheme)
                 }
-                className="min-h-[400px]"
                 language="javascript"
                 onChange={editor.updateSource}
                 options={{
@@ -63,14 +62,14 @@ const Editor: React.FC = () => {
                 value={editor.source}
               />
             ) : (
-              <div className="overflow-x-auto min-h-[400px] px-4 text-sm">
+              <div className="overflow-x-auto px-4 text-sm">
                 <LiveEditor onChange={editor.updateSource} />
                 <LiveError />
               </div>
             )}
           </div>
 
-          <div className="flex flex-row text-sm gap-x-2">
+          <div className="flex flex-row gap-x-2 text-sm">
             <input
               checked={editor.useMonaco}
               id="use-monaco"
@@ -98,13 +97,13 @@ const Editor: React.FC = () => {
           </div>
         </div>
 
-        <div className="flex flex-col justify-between p-8 bg-gray-900 rounded shadow lg:col-span-2">
+        <div className="flex flex-col lg:col-span-2 justify-between p-8 bg-gray-900 rounded shadow">
           <div className="text-center">
             <Decrement />
             <SizeIndicator />
             <Increment />
           </div>
-          <pre className="flex-grow py-8 overflow-x-auto">
+          <pre className="overflow-x-auto flex-grow py-8">
             <LivePreview />
           </pre>
           <div className="text-center">

@@ -13,7 +13,7 @@ const Decrement: React.FC = () => {
 
   return (
     <button
-      className="px-2 text-gray-900 bg-gray-400 rounded-sm disabled:bg-gray-600 disabled:cursor-not-allowed"
+      className="px-2 text-gray-900 bg-gray-400 disabled:bg-gray-600 rounded-sm disabled:cursor-not-allowed"
       disabled={shouldDisable}
       onClick={dec}
       type="button"
