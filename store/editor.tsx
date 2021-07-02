@@ -45,7 +45,7 @@ export function createEditorStore(_source: string, _title: string) {
             }));
           },
 
-          useMonaco: false,
+          useMonaco: true,
           toggleMonaco(useMonaco = !get().useMonaco) {
             set({ useMonaco });
           },
