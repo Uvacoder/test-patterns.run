@@ -1,3 +1,4 @@
+/** @param {{newline:()=>void;print:(x:any)=>void;size:number}} opts */
 export default ({ newline, print, size }) => {
   for (let i = 0; i < size * 2 - 1; i++) {
     for (let j = 0; j < size * 2 - 1; j++) {
