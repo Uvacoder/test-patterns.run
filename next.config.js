@@ -12,7 +12,7 @@ const csp = `
 
 /** @type {import("next/dist/next-server/server/config-shared").NextConfig} */
 module.exports = {
-  // https://github.com/vercel/next.js/blob/canary/packages/next/next-server/server/config-shared.ts#L42-L65
+  // https://github.com/vercel/next.js/blob/736db423528e66d3d8f7aa1174a3b5310d2a57a9/packages/next/server/config-shared.ts#L73-L99
   experimental: {
     conformance: true,
     optimizeCss: true,
