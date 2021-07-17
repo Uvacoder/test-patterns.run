@@ -7,15 +7,15 @@ import { persist } from "zustand/middleware";
 interface EditorStore extends State {
   title: string;
   source: string;
-  updateSource(source: string): void;
-  reset(): void;
+  updateSource: (source: string) => void;
+  reset: () => void;
 
   size: number;
-  increment(): void;
-  decrement(): void;
+  increment: () => void;
+  decrement: () => void;
 
   useMonaco: boolean;
-  toggleMonaco(useMonaco?: boolean): void;
+  toggleMonaco: (useMonaco?: boolean) => void;
 }
 
 const Context = createContext<EditorStore>();
@@ -28,25 +28,25 @@ export function createEditorStore(_source: string, _title: string) {
           title: _title,
           source: _source,
 
-          updateSource(source) {
+          updateSource: (source) => {
             set({ source });
           },
-          reset() {
+          reset: () => {
             set({ size: 5, source: _source });
           },
 
           size: 5,
-          increment() {
+          increment: () => {
             set(({ size }) => ({ size: size + 1 }));
           },
-          decrement() {
+          decrement: () => {
             set(({ size }) => ({
               size: Math.max(Math.min(size - 1, size), 1),
             }));
           },
 
           useMonaco: true,
-          toggleMonaco(useMonaco = !get().useMonaco) {
+          toggleMonaco: (useMonaco = !get().useMonaco) => {
             set({ useMonaco });
           },
         }),
