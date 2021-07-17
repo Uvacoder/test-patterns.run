@@ -30,7 +30,10 @@ export const getStaticProps: GetStaticProps = async () => {
   const data = filenames.reduce<PatternData[]>((acc, filename) => {
     if (/\.pattern.js$/.test(filename)) {
       const filePath = path.join(patternsDirectory, filename);
-      const source = fs.readFileSync(filePath, "utf8").trim();
+      const source = fs
+        .readFileSync(filePath, "utf8")
+        .replace(/\/\*\*.+\*\//, "")
+        .trim();
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       const logic: LogicFunction =
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
