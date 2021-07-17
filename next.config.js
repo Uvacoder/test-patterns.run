@@ -21,6 +21,11 @@ module.exports = {
     workerThreads: true,
   },
 
+  // https://github.com/vercel/next.js/blob/736db423528e66d3d8f7aa1174a3b5310d2a57a9/packages/next/server/config-shared.ts#L66-L72
+  future: {
+    strictPostcssConfiguration: true,
+  },
+
   // https://nextjs.org/docs/api-reference/next.config.js/headers
   // https://github.com/leerob/leerob.io/blob/9adc510cbfb3da88c3b0ad15632eb876ca91b607/next.config.js#L51-L88
   async headers() {
