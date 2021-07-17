@@ -1,13 +1,13 @@
 // https://github.com/leerob/leerob.io/blob/9adc510cbfb3da88c3b0ad15632eb876ca91b607/next.config.js#L39-L49
 const csp = `
-  child-src *.twitter.com;
+  child-src 'self' blob: cdn.jsdelivr.net;
   connect-src *;
   default-src 'self';
-  font-src 'self' fonts.gstatic.com;
+  font-src 'self' cdn.jsdelivr.net fonts.gstatic.com;
   img-src * blob: data:;
   media-src 'none';
-  script-src 'self' 'unsafe-eval' 'unsafe-inline';
-  style-src 'self' 'unsafe-inline' fonts.googleapis.com;
+  script-src 'self' 'unsafe-eval' 'unsafe-inline' cdn.jsdelivr.net;
+  style-src 'self' 'unsafe-inline' cdn.jsdelivr.net fonts.googleapis.com;
 `;
 
 /** @type {import("next/dist/next-server/server/config-shared").NextConfig} */
