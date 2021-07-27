@@ -1,5 +1,8 @@
 /* eslint-disable no-shadow */
 
+// debug node version
+console.log(process.version);
+
 const favicons = require("favicons");
 const fs = require("fs");
 const path = require("path");
