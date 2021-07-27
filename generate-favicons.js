@@ -34,20 +34,24 @@ favicons(
       throw error;
     }
 
-    images?.forEach((image) => {
-      fs.writeFile(
-        path.resolve(__dirname, "./public/icons", image.name),
-        image.contents,
-        (error) => error && console.error(error),
-      );
-    });
+    if (images) {
+      images.forEach((image) => {
+        fs.writeFile(
+          path.resolve(__dirname, "./public/icons", image.name),
+          image.contents,
+          (error) => error && console.error(error),
+        );
+      });
+    }
 
-    files?.forEach((file) => {
-      fs.writeFile(
-        path.resolve(__dirname, "./public", file.name),
-        file.contents,
-        (error) => error && console.error(error),
-      );
-    });
+    if (files) {
+      files.forEach((file) => {
+        fs.writeFile(
+          path.resolve(__dirname, "./public", file.name),
+          file.contents,
+          (error) => error && console.error(error),
+        );
+      });
+    }
   },
 );
