@@ -22,7 +22,7 @@ function createGitHubLink(name: string) {
 }
 
 const Editor: React.FC = () => {
-  const editor = useEditorStore((store) => store);
+  const editor = useEditorStore();
 
   return (
     <LiveProvider
@@ -48,6 +48,7 @@ const Editor: React.FC = () => {
                   // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
                   monaco.editor.defineTheme("night-owl", monacoTheme)
                 }
+                className="isolate"
                 language="javascript"
                 onChange={editor.updateSource}
                 options={{
@@ -69,31 +70,35 @@ const Editor: React.FC = () => {
             )}
           </div>
 
-          <div className="flex flex-row gap-x-2 text-sm">
-            <input
-              checked={editor.useMonaco}
-              id="use-monaco"
-              name="use-monaco"
-              onChange={() => editor.toggleMonaco()}
-              type="checkbox"
-            />
-            <label htmlFor="use-monaco">Use Monaco</label>
+          <div className="flex flex-col sm:flex-row gap-y-1 items-center text-sm">
+            <div className="flex gap-x-2">
+              <input
+                checked={editor.useMonaco}
+                id="use-monaco"
+                name="use-monaco"
+                onChange={() => editor.toggleMonaco()}
+                type="checkbox"
+              />
+              <label htmlFor="use-monaco">Use Monaco</label>
+            </div>
+
             <div className="flex-grow" />
-            <button className="link" onClick={editor.reset} type="reset">
-              Reset
-            </button>
-            <span>/</span>
-            <button
-              className="link"
-              onClick={() => toClipboard(editor.source)}
-              type="button"
-            >
-              Copy to clipboard
-            </button>
-            <span>/</span>
-            <Link href={createGitHubLink(`${editor.title}.pattern.js`)}>
-              View on GitHub
-            </Link>
+
+            <div className="flex gap-x-4 divide-gray-600 divide-solid">
+              <button className="link" onClick={editor.reset} type="reset">
+                Reset
+              </button>
+              <button
+                className="link"
+                onClick={() => toClipboard(editor.source)}
+                type="button"
+              >
+                Copy to clipboard
+              </button>
+              <Link href={createGitHubLink(`${editor.title}.pattern.js`)}>
+                View on GitHub
+              </Link>
+            </div>
           </div>
         </div>
 
