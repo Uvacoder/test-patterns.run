@@ -27,8 +27,9 @@ const PatternPage: NextPage<PatternPageProps> = (props) => {
       <NextSeo title={title} />
 
       <div className="mb-4 text-center">
-        <NextLink href="/">
-          <a href="/">⬅ Back to gallery</a>
+        <NextLink href="/" passHref>
+          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+          <a>⬅ Back to gallery</a>
         </NextLink>
       </div>
 
