@@ -12,7 +12,7 @@
     "deduplicate": "npx yarn-deduplicate && yarn",
     "dev": "next",
     "lint": "eslint --fix \"./**/*.{js,jsx,ts,tsx}\"",
-    "prebuild": "mkdirp ./public/icons/ && node generate-favicons",
+    "prebuild": "node scripts/favicons",
     "sitemap": "next-sitemap --config config/sitemap.js",
     "type-check": "tsc --noEmit",
     "validate": "yarn lint && yarn type-check",
@@ -21,6 +21,8 @@
   "dependencies": {
     "@monaco-editor/react": "^4",
     "@sindresorhus/class-names": "^1",
+    "@types/favicons": "^6",
+    "@types/mkdirp": "^1",
     "@types/node": "^14",
     "@types/react": "^17",
     "@types/react-dom": "^17",
