@@ -10,7 +10,7 @@ const csp = `
   style-src 'self' 'unsafe-inline' cdn.jsdelivr.net fonts.googleapis.com;
 `;
 
-/** @type {import("next/dist/next-server/server/config-shared").NextConfig} */
+/** @type {import("next/dist/server/config-shared").NextConfig} */
 module.exports = {
   // https://github.com/vercel/next.js/blob/736db423528e66d3d8f7aa1174a3b5310d2a57a9/packages/next/server/config-shared.ts#L73-L99
   experimental: {
@@ -18,6 +18,7 @@ module.exports = {
     optimizeCss: true,
     optimizeImages: true,
     scrollRestoration: true,
+    stats: true,
     workerThreads: true,
   },
 

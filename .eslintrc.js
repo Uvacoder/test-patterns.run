@@ -7,14 +7,9 @@ module.exports = {
     "kentcdodds/react",
     "kentcdodds/jsx-a11y",
     "plugin:tailwindcss/recommended",
-    //
+    "plugin:@next/next/recommended",
   ],
-  plugins: [
-    "prettier",
-    "simple-import-sort",
-    "tailwindcss",
-    //
-  ],
+  plugins: ["prettier", "simple-import-sort", "tailwindcss"],
 
   rules: {
     // import rules
@@ -64,7 +59,7 @@ module.exports = {
 
   overrides: [
     {
-      files: ["**/*.ts", "**/*.tsx"],
+      files: ["**/*.d.ts", "**/*.ts", "**/*.tsx"],
       parser: "@typescript-eslint/parser",
       parserOptions: {
         project: "./tsconfig.json",
