@@ -13,6 +13,7 @@
     "dev": "next",
     "lint": "eslint --fix \"./**/*.{js,jsx,ts,tsx}\"",
     "prebuild": "node scripts/favicons",
+    "prepare": "husky install $PWD/.husky && shx rm -rf .git/hooks && shx ln -s ../.husky .git/hooks",
     "sitemap": "next-sitemap --config config/sitemap.js",
     "type-check": "tsc --noEmit",
     "validate": "yarn lint && yarn type-check",
@@ -56,10 +57,11 @@
     "zustand": "3.5.7"
   },
   "devDependencies": {
-    "husky": "^4",
+    "husky": "^7",
     "lint-staged": "^11",
     "prettier": "^2",
-    "rimraf": "^3"
+    "rimraf": "^3",
+    "shx": "^0"
   },
   "license": "MIT"
 }
