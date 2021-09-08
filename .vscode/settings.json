@@ -11,9 +11,6 @@
   "[typescriptreact]": {
     "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
-  "css.validate": false,
   "eslint.packageManager": "yarn",
-  "npm.packageManager": "yarn",
-  "scss.validate": false,
-  "tailwindCSS.validate": true
+  "npm.packageManager": "yarn"
 }

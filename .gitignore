@@ -1,9 +1,31 @@
+# default ignored directores/files
+*.log
 .DS_Store
+.env*
 .eslintcache
 .next
+.pnp.*
 .vercel
-*.log
-node_modules
-public/**/*
+.yarn/*
+/**/node_modules/
+out/
+package-lock.json
 
-!/public/social.png
+# ignored generated assets; remove these if prefer commiting generated assets
+/generated/**/*
+/public/icons/**/*
+/public/browserconfig.xml
+/public/manifest.json
+/public/robots.txt
+/public/sitemap.xml
+
+# allowed directories/files
+!**/.gitkeep
+!.env.example
+
+# allowed yarn berry directories/files
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions

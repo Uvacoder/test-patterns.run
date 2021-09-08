@@ -1,3 +1,5 @@
+const Log = require("next/dist/build/output/log");
+
 // https://github.com/leerob/leerob.io/blob/9adc510cbfb3da88c3b0ad15632eb876ca91b607/next.config.js#L39-L49
 const csp = `
   child-src 'self' blob: cdn.jsdelivr.net;
@@ -14,11 +16,6 @@ const csp = `
 module.exports = {
   // https://github.com/vercel/next.js/blob/736db423528e66d3d8f7aa1174a3b5310d2a57a9/packages/next/server/config-shared.ts#L73-L99
   experimental: {
-    conformance: true,
-    optimizeCss: true,
-    optimizeImages: true,
-    scrollRestoration: true,
-    stats: true,
     workerThreads: true,
   },
 
@@ -50,8 +47,7 @@ module.exports = {
           // Opt-out of Google FLoC: https://amifloced.org/
           {
             key: "Permissions-Policy",
-            value:
-              "camera=(), microphone=(), geolocation=(), interest-cohort=()",
+            value: "camera=(), microphone=(), geolocation=(), interest-cohort=()",
           },
 
           // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy
@@ -88,17 +84,44 @@ module.exports = {
     ];
   },
 
+  // https://nextjs.org/docs/basic-features/image-optimization#domains
+  images: {
+    domains: [
+      //
+    ],
+  },
+
+  // https://nextjs.org/docs/advanced-features/source-maps
+  productionBrowserSourceMaps: true,
+
   // https://nextjs.org/docs/api-reference/next.config.js/react-strict-mode
   reactStrictMode: true,
 
+  // https://nextjs.org/docs/api-reference/next.config.js/redirects
+  async redirects() {
+    return [
+      //
+    ];
+  },
+
+  // https://nextjs.org/docs/api-reference/next.config.js/rewrites
+  async rewrites() {
+    return [
+      //
+    ];
+  },
+
   // https://nextjs.org/docs/api-reference/next.config.js/custom-webpack-config
-  /**
-   * @param {import("webpack").Configuration} config
-   * @param {{dev:boolean;isServer:boolean}} opts
-   */
-  webpack(config, { dev, isServer }) {
-    // https://github.com/leerob/leerob.io/blob/9adc510cbfb3da88c3b0ad15632eb876ca91b607/next.config.js#L27-L33
+  webpack(config, { dev, isServer, webpack }) {
+    config.plugins.push(
+      new webpack.DefinePlugin({
+        __DEV__: dev,
+      }),
+    );
+
     if (!dev && !isServer) {
+      Log.info("Replacing 'react' and 'react-dom' with 'preact'");
+
       Object.assign(config.resolve.alias, {
         react: "preact/compat",
         "react-dom/test-utils": "preact/test-utils",
