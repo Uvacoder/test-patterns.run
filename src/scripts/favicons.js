@@ -1,7 +1,7 @@
 // @ts-check
 
 const favicons = require("favicons");
-const fs = require("fs/promises");
+const fs = require("fs");
 
 const config = require("../config/site");
 const cwd = require("../utils/cwd");
@@ -30,9 +30,9 @@ const cwd = require("../utils/cwd");
   });
 
   await Promise.all([
-    ...files.map(({ contents, name }) => fs.writeFile(cwd("./public", name), contents)),
-    ...images.map(({ contents, name }) => fs.writeFile(cwd("./public/icons", name), contents)),
-    fs.writeFile(
+    ...files.map(({ contents, name }) => fs.writeFileSync(cwd("./public", name), contents)),
+    ...images.map(({ contents, name }) => fs.writeFileSync(cwd("./public/icons", name), contents)),
+    fs.writeFileSync(
       cwd("./src/generated/favicon-meta-tags.jsx"),
       `export default function FaviconMetaTags() { return <>${html.map((h) => h.replace(/>$/, " />")).join(" ")}</>; }`,
     ),
