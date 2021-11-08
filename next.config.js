@@ -9,7 +9,7 @@ const csp = dedent`
   font-src 'self' cdn.jsdelivr.net fonts.gstatic.com;
   img-src * blob: data:;
   media-src 'none';
-  script-src 'self' 'unsafe-eval' 'unsafe-inline' cdn.jsdelivr.net;
+  script-src 'self' 'unsafe-eval' 'unsafe-inline' cdn.jsdelivr.net cdn.usefathom.com;
   style-src 'self' 'unsafe-inline' cdn.jsdelivr.net fonts.googleapis.com;
 `;
 
