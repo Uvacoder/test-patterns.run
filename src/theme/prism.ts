@@ -1,6 +1,6 @@
 import { PrismTheme } from "prism-react-renderer";
 
-export default <PrismTheme>{
+export default {
   plain: {
     //
   },
@@ -100,4 +100,4 @@ export default <PrismTheme>{
       },
     },
   ],
-};
+} as PrismTheme;

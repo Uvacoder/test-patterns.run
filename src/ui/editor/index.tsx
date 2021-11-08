@@ -1,9 +1,9 @@
 import * as React from "react";
 
-import Link from "~components/link";
-import { useEditorStore } from "~store/editor";
-import monacoTheme from "~theme/monaco";
-import prismTheme from "~theme/prism";
+import { useEditor } from "@/store/editor";
+import monacoTheme from "@/theme/monaco";
+import prismTheme from "@/theme/prism";
+import Link from "@/ui/link";
 
 import Decrement from "./decrement";
 import Increment from "./increment";
@@ -20,7 +20,7 @@ function createGitHubLink(name: string) {
 }
 
 export default function Editor() {
-  const editor = useEditorStore();
+  const editor = useEditor();
 
   return (
     <LiveProvider code={editor.source} scope={{ Renderer }} theme={prismTheme} transformCode={transformer}>

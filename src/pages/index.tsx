@@ -2,14 +2,14 @@
 
 import * as React from "react";
 
-import Container from "~components/container";
-import theme from "~theme/prism";
-import { LogicFunction } from "~types";
-import createPattern from "~utils/create-pattern";
-import cwd from "~utils/cwd";
+import theme from "@/theme/prism";
+import { LogicFunction } from "@/types";
+import Container from "@/ui/container";
+import createPattern from "@/utils/create-pattern";
+import cwd from "@/utils/cwd";
 
 import fs from "fs";
-import { GetStaticProps, NextPage } from "next";
+import { GetStaticProps } from "next";
 import NextLink from "next/link";
 import { NextSeo } from "next-seo";
 import Highlight, { Prism } from "prism-react-renderer";
@@ -24,7 +24,7 @@ interface HomePageProps {
   data: PatternData[];
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
   const filenames = fs.readdirSync(cwd("./patterns"));
 
   const data = filenames.reduce<PatternData[]>((acc, filename) => {
@@ -50,43 +50,43 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-const HomePage: NextPage<HomePageProps> = ({ data }) => (
-  <Container className="grid grid-cols-1 gap-4 md:grid-cols-2">
-    <NextSeo title="Gallery" />
-    {data.map(({ title, source, example }, i) => (
-      <div key={i} className="flex flex-col h-full p-4 bg-gray-900 rounded shadow">
-        <h6 className="mt-0 text-center">{title}</h6>
+export default function HomePage({ data }: HomePageProps) {
+  return (
+    <Container className="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <NextSeo title="Gallery" />
+      {data.map(({ title, source, example }, i) => (
+        <div key={i} className="flex flex-col h-full p-4 bg-gray-900 rounded shadow">
+          <h6 className="mt-0 text-center">{title}</h6>
 
-        <div className="flex flex-col flex-grow pb-8 lg:flex-row">
-          <div className="flex-grow overflow-x-auto text-sm">
-            <Highlight Prism={Prism} code={source} language="javascript" theme={theme}>
-              {({ className, getLineProps, getTokenProps, tokens }) => (
-                <pre className={className}>
-                  {tokens.map((line, j) => (
-                    <div {...getLineProps({ line, key: j })} key={j}>
-                      {line.map((token, key) => (
-                        <span {...getTokenProps({ token, key })} key={key} />
-                      ))}
-                    </div>
-                  ))}
-                </pre>
-              )}
-            </Highlight>
+          <div className="flex flex-col flex-grow pb-8 lg:flex-row">
+            <div className="flex-grow overflow-x-auto text-sm">
+              <Highlight Prism={Prism} code={source} language="javascript" theme={theme}>
+                {({ className, getLineProps, getTokenProps, tokens }) => (
+                  <pre className={className}>
+                    {tokens.map((line, j) => (
+                      <div {...getLineProps({ line, key: j })} key={j}>
+                        {line.map((token, key) => (
+                          <span {...getTokenProps({ token, key })} key={key} />
+                        ))}
+                      </div>
+                    ))}
+                  </pre>
+                )}
+              </Highlight>
+            </div>
+
+            <div className="m-4 border border-gray-800" />
+
+            <pre className="m-auto text-sm">{example}</pre>
           </div>
 
-          <div className="m-4 border border-gray-800" />
-
-          <pre className="m-auto text-sm">{example}</pre>
+          <div className="text-sm text-center">
+            <NextLink href={`/pattern/${title}`}>
+              <a href={`/pattern/${title}`}>Open playground</a>
+            </NextLink>
+          </div>
         </div>
-
-        <div className="text-sm text-center">
-          <NextLink href={`/pattern/${title}`}>
-            <a href={`/pattern/${title}`}>Open playground</a>
-          </NextLink>
-        </div>
-      </div>
-    ))}
-  </Container>
-);
-
-export default HomePage;
+      ))}
+    </Container>
+  );
+}

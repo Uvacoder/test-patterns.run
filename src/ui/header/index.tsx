@@ -1,7 +1,7 @@
 import * as React from "react";
 
-import Link from "~components/link";
-import config from "~config/site";
+import config from "@/config/site";
+import Link from "@/ui/link";
 
 export default function Header() {
   return (

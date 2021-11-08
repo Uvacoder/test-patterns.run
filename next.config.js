@@ -1,7 +1,8 @@
-const Log = require("next/dist/build/output/log");
+const log = require("next/dist/build/output/log");
+const { default: dedent } = require("ts-dedent");
 
 // https://github.com/leerob/leerob.io/blob/9adc510cbfb3da88c3b0ad15632eb876ca91b607/next.config.js#L39-L49
-const csp = `
+const csp = dedent`
   child-src 'self' blob: cdn.jsdelivr.net;
   connect-src *;
   default-src 'self';
@@ -14,12 +15,14 @@ const csp = `
 
 /** @type {import("next/dist/server/config-shared").NextConfig} */
 module.exports = {
-  // https://github.com/vercel/next.js/blob/736db423528e66d3d8f7aa1174a3b5310d2a57a9/packages/next/server/config-shared.ts#L73-L99
+  // https://github.com/vercel/next.js/blob/canary/packages/next/server/config-shared.ts#L110
   experimental: {
+    esmExternals: false,
+    optimizeCss: true,
+    optimizeImages: true,
     workerThreads: true,
   },
 
-  // https://github.com/vercel/next.js/blob/736db423528e66d3d8f7aa1174a3b5310d2a57a9/packages/next/server/config-shared.ts#L66-L72
   future: {
     strictPostcssConfiguration: true,
   },
@@ -31,12 +34,6 @@ module.exports = {
       {
         source: "/(.*)",
         headers: [
-          // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control
-          {
-            key: "Cache-Control",
-            value: "public, s-maxage=1, stale-while-revalidate=59",
-          },
-
           // https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP
           {
             key: "Content-Security-Policy",
@@ -120,7 +117,7 @@ module.exports = {
     );
 
     if (!dev && !isServer) {
-      Log.info("Replacing 'react' and 'react-dom' with 'preact'");
+      log.info("Replacing react and react-dom with preact");
 
       Object.assign(config.resolve.alias, {
         react: "preact/compat",

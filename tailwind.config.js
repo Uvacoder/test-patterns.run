@@ -1,35 +1,24 @@
+// https://tailwindcss.com/docs/configuration
+
 const defaultTheme = require("tailwindcss/defaultConfig");
 
+/** @type {import("tailwindcss/tailwind-config").TailwindConfig} */
 module.exports = {
+  darkMode: false, // or 'media' or 'class'
+
   mode: "jit",
 
   purge: ["./**/*.tsx"],
 
-  darkMode: false, // or 'media' or 'class'
-
   theme: {
     extend: {
-      //
-    },
-
-    minWidth: (theme) => ({
-      ...defaultTheme.theme.minWidth,
-      ...theme("maxWidth"),
-    }),
-
-    fontFamily: {
-      mono: ["Cousine", ...defaultTheme.theme.fontFamily.mono],
-      sans: ["Fira Sans", ...defaultTheme.theme.fontFamily.sans],
+      fontFamily: {
+        mono: ["Cousine", ...defaultTheme.theme.fontFamily.mono],
+        sans: ["Fira Sans", ...defaultTheme.theme.fontFamily.sans],
+      },
+      minWidth: (theme) => ({
+        ...theme("maxWidth"),
+      }),
     },
   },
-
-  variants: {
-    extend: {
-      //
-    },
-  },
-
-  plugins: [
-    //
-  ],
 };

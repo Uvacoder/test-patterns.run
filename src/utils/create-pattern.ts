@@ -1,4 +1,4 @@
-import { LogicFunction } from "~types";
+import { LogicFunction } from "@/types";
 
 export default function createPattern(logic: LogicFunction) {
   return {

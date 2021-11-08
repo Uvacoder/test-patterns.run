@@ -1,12 +1,12 @@
 import * as React from "react";
 
-import Container from "~components/container";
-import Editor from "~components/editor";
-import { EditorProvider } from "~store/editor";
-import cwd from "~utils/cwd";
+import { EditorProvider } from "@/store/editor";
+import Container from "@/ui/container";
+import Editor from "@/ui/editor";
+import cwd from "@/utils/cwd";
 
 import fs from "fs";
-import { GetStaticPaths, GetStaticPathsResult, GetStaticProps, NextPage } from "next";
+import { GetStaticPaths, GetStaticPathsResult, GetStaticProps } from "next";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
 import { NextSeo } from "next-seo";
@@ -15,9 +15,7 @@ interface PatternPageProps {
   source: string;
 }
 
-const PatternPage: NextPage<PatternPageProps> = (props) => {
-  const { source } = props;
-
+export default function PatternPage({ source }: PatternPageProps) {
   const router = useRouter();
   const title = `${router.query.name as string}`;
 
@@ -36,7 +34,7 @@ const PatternPage: NextPage<PatternPageProps> = (props) => {
       </EditorProvider>
     </Container>
   );
-};
+}
 
 export const getStaticPaths: GetStaticPaths<{ name: string }> = async () => {
   const filenames = fs.readdirSync(cwd("./patterns"));
@@ -65,5 +63,3 @@ export const getStaticProps: GetStaticProps<PatternPageProps> = async ({ params 
     },
   };
 };
-
-export default PatternPage;
