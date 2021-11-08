@@ -3,10 +3,10 @@ import "@/stylesheets/index.css";
 import * as React from "react";
 
 import config from "@/config/site";
+import { FathomSubscription } from "@/lib/fathom";
 import Footer from "@/ui/footer";
 import Header from "@/ui/header";
 
-import { FathomSubscription } from "lib/fathom";
 import { AppProps } from "next/app";
 import Head from "next/head";
 import { useRouter } from "next/router";

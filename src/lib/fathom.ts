@@ -20,7 +20,7 @@ export function FathomSubscription() {
   useEffect(() => {
     if (process.env.NODE_ENV == "production") {
       Fathom.load("KCZQYZIH", {
-        includedDomains: [siteConfig.domain],
+        includedDomains: siteConfig.domains,
       });
 
       router.events.on("routeChangeComplete", handleRouteChange);
