@@ -11,14 +11,6 @@
 out/
 package-lock.json
 
-# ignored generated assets; remove these if prefer commiting generated assets
-/generated/**/*
-/public/icons/**/*
-/public/browserconfig.xml
-/public/manifest.json
-/public/robots.txt
-/public/sitemap.xml
-
 # allowed directories/files
 !**/.gitkeep
 !.env.example

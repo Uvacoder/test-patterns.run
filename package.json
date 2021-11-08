@@ -6,7 +6,7 @@
   "author": "Griko Nibras <git@griko.id>",
   "scripts": {
     "# general commands": "##################################################",
-    "build": "yarn generate:favicons && next build && yarn generate:sitemap",
+    "build": "next build && yarn generate:sitemap",
     "build:static": "yarn build && next export",
     "deduplicate": "npx yarn-deduplicate && yarn install",
     "dev": "cross-env PORT=8181 next",
