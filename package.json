@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@monaco-editor/react": "^4",
-    "@sindresorhus/class-names": "^1",
+    "@sindresorhus/class-names": "^2",
     "autoprefixer": "^10",
     "copee": "^1",
     "critters": "^0",
@@ -62,7 +62,9 @@
       "plugin:@next/next/recommended"
     ],
     "ignorePatterns": [
+      ".next",
       "generated",
+      "node_modules",
       "patterns"
     ],
     "plugins": [

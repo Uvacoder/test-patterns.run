@@ -17,7 +17,6 @@ const csp = dedent`
 module.exports = {
   // https://github.com/vercel/next.js/blob/canary/packages/next/server/config-shared.ts#L110
   experimental: {
-    esmExternals: false,
     optimizeCss: true,
     optimizeImages: true,
     workerThreads: true,

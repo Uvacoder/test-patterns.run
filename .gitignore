@@ -10,6 +10,7 @@
 /**/node_modules/
 out/
 package-lock.json
+tsconfig.tsbuildinfo
 
 # allowed directories/files
 !**/.gitkeep
