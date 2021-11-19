@@ -8,7 +8,7 @@ module.exports = {
 
   mode: "jit",
 
-  purge: ["./**/*.tsx"],
+  purge: ["src/**/*.tsx"],
 
   theme: {
     extend: {

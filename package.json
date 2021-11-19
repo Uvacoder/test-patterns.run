@@ -71,7 +71,20 @@
     "rules": {
       "jsx-a11y/anchor-is-valid": [
         "off"
+      ],
+      "tailwindcss/classnames-order": [
+        "warn"
+      ],
+      "tailwindcss/no-contradicting-classname": [
+        "error"
       ]
+    },
+    "settings": {
+      "tailwindcss": {
+        "callees": [
+          "cx"
+        ]
+      }
     }
   },
   "lint-staged": {

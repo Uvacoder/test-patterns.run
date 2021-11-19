@@ -52,14 +52,14 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
 
 export default function HomePage({ data }: HomePageProps) {
   return (
-    <Container className="grid grid-cols-1 gap-4 md:grid-cols-2">
+    <Container className="grid grid-cols-1 md:grid-cols-2 gap-4">
       <NextSeo title="Gallery" />
       {data.map(({ title, source, example }, i) => (
-        <div key={i} className="flex flex-col h-full p-4 bg-gray-900 rounded shadow">
+        <div key={i} className="flex flex-col p-4 h-full bg-gray-900 rounded shadow">
           <h6 className="mt-0 text-center">{title}</h6>
 
-          <div className="flex flex-col flex-grow pb-8 lg:flex-row">
-            <div className="flex-grow overflow-x-auto text-sm">
+          <div className="flex flex-col lg:flex-row flex-grow pb-8">
+            <div className="overflow-x-auto flex-grow text-sm">
               <Highlight Prism={Prism} code={source} language="javascript" theme={theme}>
                 {({ className, getLineProps, getTokenProps, tokens }) => (
                   <pre className={className}>
