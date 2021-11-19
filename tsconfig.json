@@ -12,6 +12,7 @@
     "module": "esnext",
     "moduleResolution": "node",
     "noEmit": true,
+    "noUncheckedIndexedAccess": true,
     "paths": {
       "@/*": ["./src/*"]
     },
@@ -19,7 +20,7 @@
     "skipLibCheck": true,
     "strict": false,
     "strictNullChecks": true,
-    "target": "es5"
+    "target": "es2017"
   },
   "exclude": ["node_modules"],
   "include": ["next-env.d.ts", "env.d.ts", "**/*.ts", "**/*.tsx"]

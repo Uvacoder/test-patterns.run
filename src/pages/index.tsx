@@ -35,7 +35,7 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
       const logic: LogicFunction = require(`../../patterns/${filename}`).default;
 
       return acc.concat({
-        title: filename.split(".")[0],
+        title: filename.split(".")[0] as "",
         source: file.replace(/\/\*\*.+\*\//, "").trim(),
         example: createPattern(logic).test(5),
       });

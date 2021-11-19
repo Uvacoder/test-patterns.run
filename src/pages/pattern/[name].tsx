@@ -41,7 +41,7 @@ export const getStaticPaths: GetStaticPaths<{ name: string }> = async () => {
 
   const paths = filenames.reduce<GetStaticPathsResult<{ name: string }>["paths"]>((acc, filename) => {
     if (/\.pattern.js$/.test(filename)) {
-      return acc.concat({ params: { name: filename.split(".")[0] } });
+      return acc.concat({ params: { name: filename.split(".")[0] as "" } });
     }
     return acc;
   }, []);
