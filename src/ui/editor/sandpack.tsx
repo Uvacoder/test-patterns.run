@@ -32,6 +32,7 @@ export default function SandpackEditor({ name, source, appendSize = 5 }: Sandpac
         recompileMode: "immediate",
         showInlineErrors: true,
         showLineNumbers: true,
+        wrapContent: true,
       }}
       theme="monokai-pro"
     />
