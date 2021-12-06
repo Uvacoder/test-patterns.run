@@ -1,16 +1,15 @@
 const log = require("next/dist/build/output/log");
 const { default: dedent } = require("ts-dedent");
 
-// https://github.com/leerob/leerob.io/blob/9adc510cbfb3da88c3b0ad15632eb876ca91b607/next.config.js#L39-L49
 const csp = dedent`
-  child-src 'self' blob: cdn.jsdelivr.net;
+  child-src 'self' blob: *.codesandbox.io;
   connect-src *;
   default-src 'self';
-  font-src 'self' cdn.jsdelivr.net fonts.gstatic.com;
+  font-src 'self';
   img-src * blob: data:;
   media-src 'none';
-  script-src 'self' 'unsafe-eval' 'unsafe-inline' cdn.jsdelivr.net cdn.usefathom.com;
-  style-src 'self' 'unsafe-inline' cdn.jsdelivr.net fonts.googleapis.com;
+  script-src 'self' 'unsafe-eval' 'unsafe-inline' cdn.usefathom.com;
+  style-src 'self' 'unsafe-inline';
 `;
 
 /** @type {import("next/dist/server/config-shared").NextConfig} */
@@ -22,12 +21,7 @@ module.exports = {
     workerThreads: true,
   },
 
-  future: {
-    strictPostcssConfiguration: true,
-  },
-
   // https://nextjs.org/docs/api-reference/next.config.js/headers
-  // https://github.com/leerob/leerob.io/blob/9adc510cbfb3da88c3b0ad15632eb876ca91b607/next.config.js#L51-L88
   async headers() {
     return [
       {
@@ -112,6 +106,7 @@ module.exports = {
     config.plugins.push(
       new webpack.DefinePlugin({
         __DEV__: dev,
+        __PROD__: !dev,
       }),
     );
 

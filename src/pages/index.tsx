@@ -1,43 +1,31 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-
 import * as React from "react";
 
-import theme from "@/theme/prism";
-import { LogicFunction } from "@/types";
-import Container from "@/ui/container";
-import createPattern from "@/utils/create-pattern";
+import { PatternData } from "@/types/pattern";
 import cwd from "@/utils/cwd";
+import { computePattern } from "@/utils/pattern";
 
+import * as Mantine from "@mantine/core";
+import { Prism } from "@mantine/prism";
 import fs from "fs";
 import { GetStaticProps } from "next";
-import NextLink from "next/link";
+import Link from "next/link";
 import { NextSeo } from "next-seo";
-import Highlight, { Prism } from "prism-react-renderer";
+import { FaCode } from "react-icons/fa";
 
-interface PatternData {
-  title: string;
-  source: string;
-  example: string;
-}
-
-interface HomePageProps {
+interface GalleryPageProps {
   data: PatternData[];
 }
 
-export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
+export const getStaticProps: GetStaticProps<GalleryPageProps> = async () => {
   const filenames = fs.readdirSync(cwd("./patterns"));
 
   const data = filenames.reduce<PatternData[]>((acc, filename) => {
-    if (/\.pattern.js$/.test(filename)) {
-      const file = fs.readFileSync(cwd("./patterns", filename), "utf8");
-
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access
-      const logic: LogicFunction = require(`../../patterns/${filename}`).default;
-
+    if (filename.endsWith(".pattern.js")) {
+      const source = fs.readFileSync(cwd("./patterns", filename), "utf8");
       return acc.concat({
-        title: filename.split(".")[0] as "",
-        source: file.replace(/\/\*\*.+\*\//, "").trim(),
-        example: createPattern(logic).test(5),
+        name: filename.replace(".pattern.js", ""),
+        source,
+        result: computePattern(source),
       });
     }
     return acc;
@@ -50,43 +38,39 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
   };
 };
 
-export default function HomePage({ data }: HomePageProps) {
+export default function GalleryPage({ data }: GalleryPageProps) {
   return (
-    <Container className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <>
       <NextSeo title="Gallery" />
-      {data.map(({ title, source, example }, i) => (
-        <div key={i} className="flex flex-col p-4 h-full bg-gray-900 rounded shadow">
-          <h6 className="mt-0 text-center">{title}</h6>
 
-          <div className="flex flex-col lg:flex-row flex-grow pb-8">
-            <div className="overflow-x-auto flex-grow text-sm">
-              <Highlight Prism={Prism} code={source} language="javascript" theme={theme}>
-                {({ className, getLineProps, getTokenProps, tokens }) => (
-                  <pre className={className}>
-                    {tokens.map((line, j) => (
-                      <div {...getLineProps({ line, key: j })} key={j}>
-                        {line.map((token, key) => (
-                          <span {...getTokenProps({ token, key })} key={key} />
-                        ))}
-                      </div>
-                    ))}
-                  </pre>
-                )}
-              </Highlight>
-            </div>
+      {data.map(({ name, source, result }) => (
+        <Mantine.Group key={name} align="stretch" direction="column">
+          <Mantine.Group>
+            <Mantine.Title order={4}>{name}</Mantine.Title>
+            <Mantine.Box sx={{ "&": { flexGrow: "1" } }} />
+            <Link href={`/pattern/${name}`} passHref>
+              <Mantine.Button component="a" rightIcon={<FaCode />} size="xs">
+                Open playground
+              </Mantine.Button>
+            </Link>
+          </Mantine.Group>
 
-            <div className="m-4 border border-gray-800" />
+          <Mantine.SimpleGrid
+            breakpoints={[
+              { cols: 2, minWidth: "sm" },
+              { cols: 1, minWidth: "xs" },
+              //
+            ]}
+          >
+            <Prism language="javascript">{source}</Prism>
+            <Prism language="markup" noCopy>
+              {result}
+            </Prism>
+          </Mantine.SimpleGrid>
 
-            <pre className="m-auto text-sm">{example}</pre>
-          </div>
-
-          <div className="text-sm text-center">
-            <NextLink href={`/pattern/${title}`}>
-              <a href={`/pattern/${title}`}>Open playground</a>
-            </NextLink>
-          </div>
-        </div>
+          <Mantine.Space h="xl" />
+        </Mantine.Group>
       ))}
-    </Container>
+    </>
   );
 }

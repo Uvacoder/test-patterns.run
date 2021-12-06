@@ -1,20 +1,17 @@
-/** @param {{newline:()=>void;print:(x:any)=>void;size:number}} opts */
-export default ({ newline, print, size }) => {
-  for (let i = 0; i < size; i++) {
-    for (let j = 0; j < size; j++) {
-      let top = i === 0
-      let bottom = i === size - 1
-      let left = j === 0
-      let right = j === size - 1
+for (let i = 0; i < size; i++) {
+  for (let j = 0; j < size; j++) {
+    const top = i === 0;
+    const bottom = i === size - 1;
+    const left = j === 0;
+    const right = j === size - 1;
 
-      let /* ↘ */ ltrb = i === j
-      let /* ↙ */ rtlb = j === size - i - 1
+    const /* ↘ */ ltrb = i === j;
+    const /* ↙ */ rtlb = j === size - i - 1;
 
-      let square = top || bottom || left || right
-      let x = ltrb || rtlb
+    const square = top || bottom || left || right;
+    const x = ltrb || rtlb;
 
-      print(square || x ? "* " : "  ")
-    }
-    newline()
+    print(square || x ? "* " : "  ");
   }
+  newline();
 }

@@ -1,12 +1,16 @@
-import "@/stylesheets/index.css";
+import "@codesandbox/sandpack-react/dist/index.css";
 
 import * as React from "react";
 
-import config from "@/config/site";
+import siteConfig from "@/config/site";
 import { FathomSubscription } from "@/lib/fathom";
+import customTheme from "@/theme/mantine";
+import PageBorder from "@/ui/core/page-border";
+import ScrollToTop from "@/ui/core/scroll-to-top";
 import Footer from "@/ui/footer";
 import Header from "@/ui/header";
 
+import { Container, MantineProvider, Space } from "@mantine/core";
 import { AppProps } from "next/app";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -17,44 +21,41 @@ function Seo() {
 
   return (
     <DefaultSeo
-      canonical={config.url + (router.asPath || "")}
-      description={config.description}
+      canonical={siteConfig.url + (router.asPath || "")}
+      description={siteConfig.description}
       openGraph={{
-        title: config.title,
-        description: config.description,
+        title: siteConfig.title,
+        description: siteConfig.description,
         type: "website",
-        site_name: config.title,
-        images: [{ url: `${config.url}/social.png` }],
+        site_name: siteConfig.title,
+        images: [{ url: `${siteConfig.url}/social.png` }],
       }}
-      titleTemplate={`%s • ${config.title}`}
+      titleTemplate={`%s • ${siteConfig.title}`}
     />
-  );
-}
-
-function Layout({ children }) {
-  return (
-    <div className="flex flex-col justify-between min-h-screen">
-      <Header />
-      <main className="flex-grow">{children}</main>
-      <Footer />
-    </div>
   );
 }
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <React.Fragment>
+    <>
       <Head>
-        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <meta content="minimum-scale=1, initial-scale=1, width=device-width" name="viewport" />
       </Head>
 
+      <FathomSubscription />
       <Seo />
 
-      <FathomSubscription />
-
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </React.Fragment>
+      <MantineProvider theme={customTheme} withGlobalStyles withNormalizeCSS>
+        <PageBorder />
+        <Container sx={(t) => ({ padding: t.spacing.md })}>
+          <Header />
+          <Space h="lg" />
+          <Component {...pageProps} />
+          <Space h="lg" />
+          <Footer />
+        </Container>
+        <ScrollToTop />
+      </MantineProvider>
+    </>
   );
 }

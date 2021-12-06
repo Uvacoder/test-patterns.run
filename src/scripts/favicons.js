@@ -3,19 +3,19 @@
 const favicons = require("favicons");
 const fs = require("fs");
 
-const config = require("../config/site");
+const siteConfig = require("../config/site");
 const cwd = require("../utils/cwd");
 
 (async () => {
-  const { files, images, html } = await favicons(cwd("./public/kite.png"), {
+  const { files, images, html } = await favicons(cwd("./public/icon.png"), {
     path: "/icons/",
-    appName: config.title,
-    appShortName: config.title,
-    appDescription: config.description,
-    developerName: config.title,
-    developerURL: config.url,
-    background: config.theme,
-    theme_color: config.theme,
+    appName: siteConfig.title,
+    appShortName: siteConfig.title,
+    appDescription: siteConfig.description,
+    developerName: siteConfig.title,
+    developerURL: siteConfig.url,
+    background: siteConfig.theme,
+    theme_color: siteConfig.theme,
     icons: {
       android: true,
       appleIcon: true,

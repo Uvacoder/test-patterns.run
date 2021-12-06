@@ -1,15 +1,12 @@
-/** @param {{newline:()=>void;print:(x:any)=>void;size:number}} opts */
-export default ({ newline, print, size }) => {
-  for (let i = 0; i < size; i++) {
-    for (let j = 0; j < size; j++) {
-      let top = i === 0
-      let bottom = i === size - 1
-      let left = j === 0
-      let right = j === size - 1
+for (let i = 0; i < size; i++) {
+  for (let j = 0; j < size; j++) {
+    const top = i === 0;
+    const bottom = i === size - 1;
+    const left = j === 0;
+    const right = j === size - 1;
 
-      let clause = top || bottom || left || right
-      print(clause ? "* " : "  ")
-    }
-    newline()
+    const clause = top || bottom || left || right;
+    print(clause ? "* " : "  ");
   }
+  newline();
 }

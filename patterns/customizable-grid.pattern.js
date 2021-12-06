@@ -1,15 +1,12 @@
-/** @param {{newline:()=>void;print:(x:any)=>void;size:number}} opts */
-export default ({ newline, print, size }) => {
-  let hspacing = 2
-  let vspacing = 2
+const hspacing = 2;
+const vspacing = 2;
 
-  for (let i = 0; i < size; i++) {
-    for (let j = 0; j < size; j++) {
-      let horizontal = j < size && j % hspacing == 0
-      let vertical = i < size && i % vspacing == 0
+for (let i = 0; i < size; i++) {
+  for (let j = 0; j < size; j++) {
+    const horizontal = j < size && j % hspacing == 0;
+    const vertical = i < size && i % vspacing == 0;
 
-      print(horizontal && vertical ? "* " : "  ")
-    }
-    newline()
+    print(horizontal && vertical ? "* " : "  ");
   }
+  newline();
 }

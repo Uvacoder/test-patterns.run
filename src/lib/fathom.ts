@@ -11,15 +11,16 @@ import siteConfig from "@/config/site";
 import * as Fathom from "fathom-client";
 import { useRouter } from "next/router";
 
-export const FATHOM_DASHBOARD_URL = "https://app.usefathom.com/share/kczqyzih/console+patterns";
-export const FATHOM_REFERRAL_URL = "https://usefathom.com/ref/QHAJTL";
+function handleRouteChange() {
+  Fathom.trackPageview();
+}
 
 export function FathomSubscription() {
   const router = useRouter();
 
   useEffect(() => {
-    if (process.env.NODE_ENV == "production") {
-      Fathom.load("KCZQYZIH", {
+    if (__PROD__) {
+      Fathom.load(siteConfig.fathom.id, {
         includedDomains: siteConfig.domains,
       });
 
@@ -32,8 +33,4 @@ export function FathomSubscription() {
   }, []);
 
   return null;
-}
-
-function handleRouteChange() {
-  Fathom.trackPageview();
 }

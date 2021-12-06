@@ -1,17 +1,30 @@
 // @ts-check
 
 const siteConfig = {
-  title: "Console Patterns",
+  title: "patterns.run",
   description: "Collection of snippets to render logical patterns",
-  theme: "#C3DAFE", // indigo-200
+  url: "https://patterns.run",
+
   domains: [
-    "console-patterns.hostman.site",
-    "console-patterns.netlify.app",
-    "console-patterns.onrender.com",
-    "console-patterns.pages.dev",
-    "console-patterns.vercel.app",
+    "patterns.run",
+    "patterns-run.hostman.site",
+    "patterns-run.netlify.app",
+    "patterns-run.onrender.com",
+    "patterns-run.pages.dev",
+    "patterns-run.vercel.app",
   ],
-  url: "https://console-patterns.vercel.app",
+
+  fathom: {
+    id: "KCZQYZIH",
+    dashboard: "https://app.usefathom.com/share/kczqyzih/patterns.run",
+    referral: "https://usefathom.com/ref/QHAJTL",
+  },
+
+  links: {
+    github: "https://github.com/grikomsn/patterns.run",
+  },
+
+  theme: "#1A1B1E",
 };
 
 module.exports = siteConfig;

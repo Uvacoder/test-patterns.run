@@ -1,14 +1,11 @@
-/** @param {{newline:()=>void;print:(x:any)=>void;size:number}} opts */
-export default ({ newline, print, size }) => {
-  for (let i = 0; i < size * 2 - 1; i++) {
-    for (let j = 0; j < size * 2 - 1; j++) {
-      let lt /* ↘ */ = j >= size - i - 1
-      let rt /* ↙ */ = j <= size + i - 1
-      let head = lt && rt && i < size
-      let line = j === size - 1
+for (let i = 0; i < size * 2 - 1; i++) {
+  for (let j = 0; j < size * 2 - 1; j++) {
+    const lt /* ↘ */ = j >= size - i - 1;
+    const rt /* ↙ */ = j <= size + i - 1;
+    const head = lt && rt && i < size;
+    const line = j === size - 1;
 
-      print(head || line ? "* " : "  ")
-    }
-    newline()
+    print(head || line ? "* " : "  ");
   }
+  newline();
 }

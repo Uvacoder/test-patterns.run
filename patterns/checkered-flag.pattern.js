@@ -1,12 +1,9 @@
-/** @param {{newline:()=>void;print:(x:any)=>void;size:number}} opts */
-export default ({ newline, print, size }) => {
-  for (let i = 0; i < size; i++) {
-    for (let j = 0; j < size; j++) {
-      let odd = i % 2 !== 0 && j % 2 !== 0
-      let even = i % 2 === 0 && j % 2 === 0
+for (let i = 0; i < size; i++) {
+  for (let j = 0; j < size; j++) {
+    const odd = i % 2 !== 0 && j % 2 !== 0;
+    const even = i % 2 === 0 && j % 2 === 0;
 
-      print(odd || even ? "█ " : "  ")
-    }
-    newline()
+    print(odd || even ? "█ " : "  ");
   }
+  newline();
 }

@@ -1,14 +1,23 @@
 import * as React from "react";
 
-import Link from "@/ui/link";
+import siteConfig from "@/config/site";
+
+import * as Mantine from "@mantine/core";
 
 export default function Footer() {
   return (
-    <footer className="p-8 pb-16 text-sm text-center">
-      Made using <Link href="https://nextjs.org">Next.js</Link> and{" "}
-      <Link href="https://tailwindcss.com">Tailwind CSS</Link>.
-      <br />
-      Source code is <Link href="https://github.com/grikomsn/console-patterns">available on GitHub</Link>.
-    </footer>
+    <Mantine.Box component="footer" sx={{ paddingBottom: "4rem" }}>
+      <Mantine.TypographyStylesProvider sx={{ fontSize: "0.8rem" }}>
+        Made using <a href="https://nextjs.org">Next.js</a>, <a href="https://mantine.dev/">Mantine</a>, and{" "}
+        <a href="https://sandpack.codesandbox.io">Sandpack</a> Sandpack. Hosted on{" "}
+        <a href="https://vercel.com/home">Vercel</a>.
+        <br />
+        Source code is available on <a href={siteConfig.links.github}>GitHub</a>.
+        <br />
+        <br />
+        View analytics dashboard on <a href={siteConfig.fathom.dashboard}>Fathom</a> or use our{" "}
+        <a href={siteConfig.fathom.referral}>referral link</a>.
+      </Mantine.TypographyStylesProvider>
+    </Mantine.Box>
   );
 }

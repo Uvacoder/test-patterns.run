@@ -1,14 +1,14 @@
 {
-  "name": "Console Patterns",
-  "short_name": "Console Patterns",
+  "name": "patterns.run",
+  "short_name": "patterns.run",
   "description": "Collection of snippets to render logical patterns",
   "dir": "auto",
   "lang": "en-US",
   "display": "standalone",
   "orientation": "any",
   "start_url": "/?homescreen=1",
-  "background_color": "#C3DAFE",
-  "theme_color": "#C3DAFE",
+  "background_color": "#343a40",
+  "theme_color": "#343a40",
   "icons": [
     {
       "src": "/icons/android-chrome-36x36.png",
