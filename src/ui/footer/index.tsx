@@ -9,8 +9,7 @@ export default function Footer() {
     <Mantine.Box component="footer" sx={{ paddingBottom: "4rem" }}>
       <Mantine.TypographyStylesProvider sx={{ fontSize: "0.8rem" }}>
         Made using <a href="https://nextjs.org">Next.js</a>, <a href="https://mantine.dev/">Mantine</a>, and{" "}
-        <a href="https://sandpack.codesandbox.io">Sandpack</a> Sandpack. Hosted on{" "}
-        <a href="https://vercel.com/home">Vercel</a>.
+        <a href="https://sandpack.codesandbox.io">Sandpack</a>. Hosted on <a href="https://vercel.com/home">Vercel</a>.
         <br />
         Source code is available on <a href={siteConfig.links.github}>GitHub</a>.
         <br />
