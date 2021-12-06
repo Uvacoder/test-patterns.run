@@ -7,6 +7,7 @@ import IconPng from "../../../public/icon.png";
 import * as Mantine from "@mantine/core";
 import Image from "next/image";
 import Link from "next/link";
+import { FaCode } from "react-icons/fa";
 
 export default function Header() {
   return (
@@ -14,6 +15,7 @@ export default function Header() {
       sx={(t) => ({
         paddingBottom: t.spacing.md,
         paddingTop: t.spacing.md,
+        position: "relative",
         [`@media (max-width: ${t.breakpoints.xs}px)`]: {
           textAlign: "center",
         },
@@ -43,6 +45,18 @@ export default function Header() {
         <Mantine.Anchor href={`${siteConfig.links.github}/issues/new/choose`}>Request pattern</Mantine.Anchor> or{" "}
         <Mantine.Anchor href={siteConfig.links.github}>view source on GitHub</Mantine.Anchor>
       </Mantine.Text>
+
+      <Link href="/playground" passHref>
+        <Mantine.Button
+          color="green"
+          component="a"
+          rightIcon={<FaCode />}
+          size="xs"
+          sx={{ position: "absolute", right: 0, top: 0 }}
+        >
+          Open playground
+        </Mantine.Button>
+      </Link>
     </Mantine.Box>
   );
 }
