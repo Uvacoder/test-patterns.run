@@ -12,12 +12,12 @@ import { FaArrowLeft } from "react-icons/fa";
 
 const SandpackEditor = dynamic(() => import("@/ui/editor/sandpack"));
 
-interface PlaygroundPageProps {
+interface PatternPageProps {
   name: string;
   source: string;
 }
 
-export const getStaticProps: GetStaticProps<PlaygroundPageProps> = async ({ params }) => {
+export const getStaticProps: GetStaticProps<PatternPageProps> = async ({ params }) => {
   const name = params?.name as string;
   const source = fs.readFileSync(cwd("./patterns", `${name}.pattern.js`), "utf8");
   return {
@@ -44,7 +44,7 @@ export const getStaticPaths: GetStaticPaths<{ name: string }> = async () => {
   };
 };
 
-export default function PlaygroundPage({ name, source }: PlaygroundPageProps) {
+export default function PatternPage({ name, source }: PatternPageProps) {
   return (
     <Mantine.Group align="stretch" direction="column">
       <NextSeo title={name} />

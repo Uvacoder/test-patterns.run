@@ -50,7 +50,7 @@ export default function GalleryPage({ data }: GalleryPageProps) {
             <Mantine.Box sx={{ "&": { flexGrow: "1" } }} />
             <Link href={`/pattern/${name}`} passHref>
               <Mantine.Button component="a" rightIcon={<FaCode />} size="xs">
-                Open playground
+                Edit in playground
               </Mantine.Button>
             </Link>
           </Mantine.Group>
