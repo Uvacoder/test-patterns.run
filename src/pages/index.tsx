@@ -2,7 +2,6 @@ import * as React from "react";
 
 import { PatternData } from "@/types/pattern";
 import cwd from "@/utils/cwd";
-import { computePattern } from "@/utils/pattern";
 
 import * as Mantine from "@mantine/core";
 import { Prism } from "@mantine/prism";
@@ -10,6 +9,7 @@ import fs from "fs";
 import { GetStaticProps } from "next";
 import Link from "next/link";
 import { NextSeo } from "next-seo";
+import { patternRunner } from "pattern-runner";
 import { FaCode } from "react-icons/fa";
 
 interface GalleryPageProps {
@@ -25,7 +25,7 @@ export const getStaticProps: GetStaticProps<GalleryPageProps> = async () => {
       return acc.concat({
         name: filename.replace(".pattern.js", ""),
         source,
-        result: computePattern(source),
+        result: patternRunner(source),
       });
     }
     return acc;
