@@ -22,6 +22,7 @@ const siteConfig = {
 
   links: {
     github: "https://github.com/grikomsn/patterns.run",
+    vercel: "https://vercel.com/home?utm_source=grikomsn&utm_campaign=oss",
   },
 
   theme: "#1A1B1E",

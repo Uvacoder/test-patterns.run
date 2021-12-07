@@ -13,9 +13,13 @@ export default function Header() {
   return (
     <Mantine.Box
       sx={(t) => ({
+        alignItems: "flex-start",
+        display: "flex",
+        flexDirection: "column",
         paddingTop: t.spacing.md,
         position: "relative",
         [`@media (max-width: ${t.breakpoints.xs}px)`]: {
+          alignItems: "center",
           textAlign: "center",
         },
       })}
@@ -37,6 +41,7 @@ export default function Header() {
             fontSize: t.fontSizes.sm,
           },
           [`@media (min-width: ${t.breakpoints.xs}px)`]: {
+            alignSelf: "flex-end",
             textAlign: "right",
           },
         })}
@@ -66,7 +71,7 @@ export default function Header() {
         </Link>
       </Mantine.Box>
 
-      <Mantine.Divider mt="lg" />
+      <Mantine.Space h="lg" />
     </Mantine.Box>
   );
 }
