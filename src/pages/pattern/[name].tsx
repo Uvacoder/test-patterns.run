@@ -49,16 +49,29 @@ export default function PatternPage({ name, source }: PatternPageProps) {
     <Mantine.Group align="stretch" direction="column">
       <NextSeo title={name} />
 
-      <Mantine.Group position="apart">
+      <Mantine.Box
+        sx={(t) => ({
+          alignItems: "center",
+          display: "flex",
+          flexDirection: "column",
+          gap: `${t.spacing.xs}px`,
+          [`@media (min-width: ${t.breakpoints.xs}px)`]: {
+            flexDirection: "row",
+            justifyContent: "space-between",
+          },
+        })}
+      >
         <Mantine.Title order={4}>{name}</Mantine.Title>
         <Link href="/" passHref>
           <Mantine.Button component="a" leftIcon={<FaArrowLeft />} size="xs">
             Back to gallery
           </Mantine.Button>
         </Link>
-      </Mantine.Group>
+      </Mantine.Box>
 
-      <SandpackEditor name={name} source={source} />
+      <Mantine.Box sx={{ maxWidth: "100vw", overflow: "auto" }}>
+        <SandpackEditor name={name} source={source} />
+      </Mantine.Box>
     </Mantine.Group>
   );
 }

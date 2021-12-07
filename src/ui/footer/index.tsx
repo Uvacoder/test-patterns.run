@@ -6,8 +6,15 @@ import * as Mantine from "@mantine/core";
 
 export default function Footer() {
   return (
-    <Mantine.Box component="footer" sx={{ paddingBottom: "4rem" }}>
-      <Mantine.TypographyStylesProvider sx={{ fontSize: "0.8rem" }}>
+    <Mantine.Box component="footer" sx={{ paddingBottom: "2rem" }}>
+      <Mantine.TypographyStylesProvider
+        sx={(t) => ({
+          fontSize: "0.8rem",
+          [`@media (max-width: ${t.breakpoints.xs}px)`]: {
+            textAlign: "center",
+          },
+        })}
+      >
         Made using <a href="https://nextjs.org">Next.js</a>, <a href="https://mantine.dev/">Mantine</a>, and{" "}
         <a href="https://sandpack.codesandbox.io">Sandpack</a>. Hosted on <a href="https://vercel.com/home">Vercel</a>.
         <br />

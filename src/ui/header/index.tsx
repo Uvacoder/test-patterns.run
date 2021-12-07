@@ -13,7 +13,6 @@ export default function Header() {
   return (
     <Mantine.Box
       sx={(t) => ({
-        paddingBottom: t.spacing.md,
         paddingTop: t.spacing.md,
         position: "relative",
         [`@media (max-width: ${t.breakpoints.xs}px)`]: {
@@ -67,7 +66,7 @@ export default function Header() {
         </Link>
       </Mantine.Box>
 
-      <Mantine.Divider />
+      <Mantine.Divider mt="lg" />
     </Mantine.Box>
   );
 }

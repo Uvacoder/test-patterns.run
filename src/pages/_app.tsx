@@ -10,7 +10,7 @@ import ScrollToTop from "@/ui/core/scroll-to-top";
 import Footer from "@/ui/footer";
 import Header from "@/ui/header";
 
-import { Container, MantineProvider, Space } from "@mantine/core";
+import { Box, MantineProvider, Space } from "@mantine/core";
 import { AppProps } from "next/app";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -47,13 +47,21 @@ export default function App({ Component, pageProps }: AppProps) {
 
       <MantineProvider theme={customTheme} withGlobalStyles withNormalizeCSS>
         <PageBorder />
-        <Container sx={(t) => ({ padding: t.spacing.md })}>
+        <Box
+          sx={(t) => ({
+            maxWidth: `${t.breakpoints.lg}px`,
+            margin: "0 auto",
+            [`@media (min-width: ${t.breakpoints.xs}px)`]: {
+              padding: t.spacing.md,
+            },
+          })}
+        >
           <Header />
           <Space h="lg" />
           <Component {...pageProps} />
           <Space h="lg" />
           <Footer />
-        </Container>
+        </Box>
         <ScrollToTop />
       </MantineProvider>
     </>

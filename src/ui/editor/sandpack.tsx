@@ -73,7 +73,6 @@ export default function SandpackEditor({ name, source }: SandpackEditorProps) {
         recompileMode: "immediate",
         showInlineErrors: true,
         showLineNumbers: true,
-        wrapContent: true,
       }}
       theme="monokai-pro"
     />

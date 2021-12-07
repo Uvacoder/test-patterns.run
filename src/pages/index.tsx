@@ -44,7 +44,14 @@ export default function GalleryPage({ data }: GalleryPageProps) {
       <NextSeo title="Gallery" />
 
       {data.map(({ name, source, result }) => (
-        <Mantine.Group key={name} align="stretch" direction="column">
+        <Mantine.Group
+          key={name}
+          align="stretch"
+          direction="column"
+          sx={{
+            overflow: "hidden",
+          }}
+        >
           <Mantine.Box
             sx={(t) => ({
               alignItems: "center",
@@ -77,8 +84,10 @@ export default function GalleryPage({ data }: GalleryPageProps) {
               },
             })}
           >
-            <Prism language="javascript">{source}</Prism>
-            <Prism language="markup" noCopy>
+            <Prism language="javascript" sx={{ maxWidth: "100vw" }}>
+              {source}
+            </Prism>
+            <Prism language="markup" noCopy sx={{ maxWidth: "100vw" }}>
               {result}
             </Prism>
           </Mantine.Box>
