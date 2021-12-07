@@ -46,17 +46,28 @@ export default function Header() {
         <Mantine.Anchor href={siteConfig.links.github}>view source on GitHub</Mantine.Anchor>
       </Mantine.Text>
 
-      <Link href="/playground" passHref>
-        <Mantine.Button
-          color="green"
-          component="a"
-          rightIcon={<FaCode />}
-          size="xs"
-          sx={{ position: "absolute", right: 0, top: 0 }}
-        >
-          Open playground
-        </Mantine.Button>
-      </Link>
+      <Mantine.Box sx={(t) => ({ paddingTop: t.spacing.md })}>
+        <Link href="/playground" passHref>
+          <Mantine.Button
+            color="green"
+            component="a"
+            rightIcon={<FaCode />}
+            size="xs"
+            sx={(t) => ({
+              [`@media (min-width: ${t.breakpoints.xs}px)`]: {
+                position: "absolute",
+                right: 0,
+                top: 0,
+                zIndex: 1,
+              },
+            })}
+          >
+            Open playground
+          </Mantine.Button>
+        </Link>
+      </Mantine.Box>
+
+      <Mantine.Divider />
     </Mantine.Box>
   );
 }

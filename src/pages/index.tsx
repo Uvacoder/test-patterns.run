@@ -45,7 +45,18 @@ export default function GalleryPage({ data }: GalleryPageProps) {
 
       {data.map(({ name, source, result }) => (
         <Mantine.Group key={name} align="stretch" direction="column">
-          <Mantine.Group>
+          <Mantine.Box
+            sx={(t) => ({
+              alignItems: "center",
+              display: "flex",
+              flexDirection: "column",
+              gap: `${t.spacing.xs}px`,
+              [`@media (min-width: ${t.breakpoints.xs}px)`]: {
+                flexDirection: "row",
+                justifyContent: "space-between",
+              },
+            })}
+          >
             <Mantine.Title order={4}>{name}</Mantine.Title>
             <Mantine.Box sx={{ "&": { flexGrow: "1" } }} />
             <Link href={`/pattern/${name}`} passHref>
@@ -53,20 +64,24 @@ export default function GalleryPage({ data }: GalleryPageProps) {
                 Edit in playground
               </Mantine.Button>
             </Link>
-          </Mantine.Group>
+          </Mantine.Box>
 
-          <Mantine.SimpleGrid
-            breakpoints={[
-              { cols: 2, minWidth: "sm" },
-              { cols: 1, minWidth: "xs" },
-              //
-            ]}
+          <Mantine.Box
+            sx={(t) => ({
+              [`@media (min-width: ${t.breakpoints.xs}px)`]: {
+                display: "flex",
+                gap: `${t.spacing.sm}px`,
+                "& > *": {
+                  width: "50%",
+                },
+              },
+            })}
           >
             <Prism language="javascript">{source}</Prism>
             <Prism language="markup" noCopy>
               {result}
             </Prism>
-          </Mantine.SimpleGrid>
+          </Mantine.Box>
 
           <Mantine.Space h="xl" />
         </Mantine.Group>
