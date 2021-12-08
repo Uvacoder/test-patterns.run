@@ -32,12 +32,14 @@ export default function Footer() {
         <br />
         <br />
       </Mantine.TypographyStylesProvider>
-      <Mantine.Anchor href={siteConfig.links.vercel}>
-        <Mantine.Image
-          src="https://www.datocms-assets.com/31049/1618983297-powered-by-vercel.svg"
-          sx={{ maxWidth: "10rem", width: "100%" }}
-        />
-      </Mantine.Anchor>
+      {process.env.VERCEL && (
+        <Mantine.Anchor href={siteConfig.links.vercel}>
+          <Mantine.Image
+            src="https://www.datocms-assets.com/31049/1618983297-powered-by-vercel.svg"
+            sx={{ maxWidth: "10rem", width: "100%" }}
+          />
+        </Mantine.Anchor>
+      )}
     </Mantine.Box>
   );
 }

@@ -1,4 +1,6 @@
+const { PHASE_DEVELOPMENT_SERVER } = require("next/constants");
 const log = require("next/dist/build/output/log");
+
 const { default: dedent } = require("ts-dedent");
 
 const csp = dedent`
@@ -12,8 +14,12 @@ const csp = dedent`
   style-src 'self' 'unsafe-inline';
 `;
 
-/** @type {import("next/dist/server/config-shared").NextConfig} */
-module.exports = {
+/** @returns {import("next/dist/server/config-shared").NextConfig} */
+module.exports = (phase) => ({
+  env: {
+    VERCEL: phase == PHASE_DEVELOPMENT_SERVER ? true : process.env.VERCEL,
+  },
+
   // https://github.com/vercel/next.js/blob/canary/packages/next/server/config-shared.ts#L110
   experimental: {
     optimizeCss: true,
@@ -122,4 +128,4 @@ module.exports = {
 
     return config;
   },
-};
+});
