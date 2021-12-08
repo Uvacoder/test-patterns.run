@@ -44,23 +44,26 @@ export const getStaticPaths: GetStaticPaths<{ name: string }> = async () => {
   };
 };
 
+const useStyles = Mantine.createStyles((t) => ({
+  header: {
+    alignItems: "center",
+    display: "flex",
+    flexDirection: "column",
+    gap: `${t.spacing.xs}px`,
+    [`@media (min-width: ${t.breakpoints.xs}px)`]: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+    },
+  },
+}));
+
 export default function PatternPage({ name, source }: PatternPageProps) {
+  const { classes } = useStyles();
   return (
     <Mantine.Group align="stretch" direction="column">
       <NextSeo title={name} />
 
-      <Mantine.Box
-        sx={(t) => ({
-          alignItems: "center",
-          display: "flex",
-          flexDirection: "column",
-          gap: `${t.spacing.xs}px`,
-          [`@media (min-width: ${t.breakpoints.xs}px)`]: {
-            flexDirection: "row",
-            justifyContent: "space-between",
-          },
-        })}
-      >
+      <Mantine.Box className={classes.header}>
         <Mantine.Title order={4}>{name}</Mantine.Title>
         <Link href="/" passHref>
           <Mantine.Button component="a" leftIcon={<FaArrowLeft />} size="xs">

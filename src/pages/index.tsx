@@ -38,32 +38,43 @@ export const getStaticProps: GetStaticProps<GalleryPageProps> = async () => {
   };
 };
 
+const useStyles = Mantine.createStyles((t) => ({
+  header: {
+    alignItems: "center",
+    display: "flex",
+    flexDirection: "column",
+    gap: `${t.spacing.xs}px`,
+    [`@media (min-width: ${t.breakpoints.xs}px)`]: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+    },
+  },
+  grid: {
+    [`@media (min-width: ${t.breakpoints.xs}px)`]: {
+      display: "flex",
+      gap: `${t.spacing.sm}px`,
+      "& > *": {
+        width: "50%",
+      },
+    },
+  },
+  patternTitle: {
+    paddingBottom: t.spacing.sm,
+    [`@media (max-width: ${t.breakpoints.xs}px)`]: {
+      textAlign: "center",
+    },
+  },
+}));
+
 export default function GalleryPage({ data }: GalleryPageProps) {
+  const { classes } = useStyles();
   return (
     <>
       <NextSeo title="Gallery" />
 
       {data.map(({ name, source, result }) => (
-        <Mantine.Group
-          key={name}
-          align="stretch"
-          direction="column"
-          sx={{
-            overflow: "hidden",
-          }}
-        >
-          <Mantine.Box
-            sx={(t) => ({
-              alignItems: "center",
-              display: "flex",
-              flexDirection: "column",
-              gap: `${t.spacing.xs}px`,
-              [`@media (min-width: ${t.breakpoints.xs}px)`]: {
-                flexDirection: "row",
-                justifyContent: "space-between",
-              },
-            })}
-          >
+        <Mantine.Group key={name} align="stretch" direction="column" sx={{ overflow: "hidden" }}>
+          <Mantine.Box className={classes.header}>
             <Mantine.Title order={4}>{name}</Mantine.Title>
             <Mantine.Box sx={{ "&": { flexGrow: "1" } }} />
             <Link href={`/pattern/${name}`} passHref>
@@ -73,23 +84,23 @@ export default function GalleryPage({ data }: GalleryPageProps) {
             </Link>
           </Mantine.Box>
 
-          <Mantine.Box
-            sx={(t) => ({
-              [`@media (min-width: ${t.breakpoints.xs}px)`]: {
-                display: "flex",
-                gap: `${t.spacing.sm}px`,
-                "& > *": {
-                  width: "50%",
-                },
-              },
-            })}
-          >
-            <Prism language="javascript" sx={{ maxWidth: "100vw" }}>
-              {source}
-            </Prism>
-            <Prism language="markup" noCopy sx={{ maxWidth: "100vw" }}>
-              {result}
-            </Prism>
+          <Mantine.Box className={classes.grid}>
+            <Mantine.Box sx={(t) => ({ paddingBottom: t.spacing.sm })}>
+              <Mantine.Title className={classes.patternTitle} order={6}>
+                Source code
+              </Mantine.Title>
+              <Prism language="javascript" sx={{ maxWidth: "100vw" }}>
+                {source}
+              </Prism>
+            </Mantine.Box>
+            <Mantine.Box sx={(t) => ({ paddingBottom: t.spacing.sm })}>
+              <Mantine.Title className={classes.patternTitle} order={6}>
+                Result
+              </Mantine.Title>
+              <Prism language="markup" noCopy sx={{ maxWidth: "100vw" }}>
+                {result}
+              </Prism>
+            </Mantine.Box>
           </Mantine.Box>
 
           <Mantine.Space h="xl" />
