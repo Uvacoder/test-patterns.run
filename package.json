@@ -12,7 +12,9 @@
     "generate:favicons": "node src/scripts/favicons.js",
     "generate:sitemap": "next-sitemap --config src/config/sitemap.js",
     "lint": "next lint --fix --no-cache",
-    "prepare": "husky install $PWD/.husky",
+    "postinstall": "husky install $PWD/.husky",
+    "postpublish": "pinst --enable",
+    "prepublishOnly": "pinst --disable",
     "type-check": "tsc --noEmit",
     "validate": "yarn lint && yarn type-check",
     "#": "###################################################################"
@@ -48,7 +50,8 @@
     "eslint-config-kdnj": "^1",
     "eslint-config-next": "^12",
     "husky": "^7",
-    "lint-staged": "^12"
+    "lint-staged": "^12",
+    "pinst": "^2"
   },
   "eslintConfig": {
     "extends": [
