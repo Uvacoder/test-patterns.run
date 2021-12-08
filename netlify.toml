@@ -1,2 +1,7 @@
+# https://github.com/netlify/build-image/issues/612#issuecomment-925772672
+[build.environment]
+YARN_ENABLE_GLOBAL_CACHE = "true"
+YARN_GLOBAL_FOLDER = "/opt/buildhome/.yarn_cache"
+
 [[plugins]]
 package = "@netlify/plugin-nextjs"
